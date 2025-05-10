@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PATH = "/usr/bin:$PATH"
-        DOCKERHUB_CREDENTIALS = credentials('johnsonbv-creds-id')
+        DOCKERHUB_CREDENTIALS = credentials('leocrita')
     }
 
     stages {
@@ -23,16 +23,16 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t johnsonbv/java-web-calculator .'
+                sh 'docker build -t leocrita/java-web-calculator .'
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'johnsonbv-creds-id', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'leocrita', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh '''
                         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                        docker push johnsonbv/java-web-calculator
+                        docker push leocrita/java-web-calculator
                     '''
                 }
             }
