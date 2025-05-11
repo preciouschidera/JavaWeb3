@@ -4,7 +4,7 @@ pipeline {
 
     environment {
 
-        DOCKER_HUB_CREDENTIALS = 'Dockerhub'
+        DOCKER_HUB_CREDENTIALS = 'docker'
 
         IMAGE_NAME = 'leocrita/java-web-calculator'
 
